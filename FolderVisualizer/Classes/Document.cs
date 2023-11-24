@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FolderVisualizer.Classes
 {
-    public abstract class DocumentCompenent
+    public abstract class DocumentComponent
     {
         private string name;
 
-        public DocumentCompenent(string name)
+        public DocumentComponent(string name)
         {
             this.name = name;
 
@@ -18,7 +18,7 @@ namespace FolderVisualizer.Classes
 
 
         abstract public double calculateSize();
-        abstract public void add(DocumentCompenent documentCompenent);
+        abstract public void add(DocumentComponent documentComponent);
         abstract public String getExtension();
 
         public string getName() { return name; }

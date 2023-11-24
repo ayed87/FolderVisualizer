@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace FolderVisualizer.Classes
 {
-    public class Folder : DocumentCompenent
+    public class Folder : DocumentComponent
     {
-        private List<DocumentCompenent> documentCompenents;
+        private List<DocumentComponent> documentComponents;
         public Folder(string name) : base(name) {
-            documentCompenents = new List<DocumentCompenent>();
+            documentComponents = new List<DocumentComponent>();
         }
-        public override void add(DocumentCompenent documentCompenent)
+        public override void add(DocumentComponent documentComponent)
         {
-            documentCompenents.Add(documentCompenent);
+            documentComponents.Add(documentComponent);
         }
 
         public override double calculateSize()
         {
             double size = 0;
-            foreach(DocumentCompenent documentCompenent in documentCompenents)
+            foreach(DocumentComponent documentComponent in documentComponents)
             {
-                size += documentCompenent.calculateSize();
+                size += documentComponent.calculateSize();
             }
             return size;
         }
@@ -31,9 +31,10 @@ namespace FolderVisualizer.Classes
         {
             throw new Exception();
         }
-        public List<DocumentCompenent> getDocuments()
+
+        public List<DocumentComponent> getDocuments()
         {
-            return documentCompenents;
+            return documentComponents;
         }
 
    

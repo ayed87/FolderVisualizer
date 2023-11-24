@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace FolderVisualizer.Classes
 {
-    public class File : DocumentCompenent
+    public class File : DocumentComponent
 
     {
 
@@ -21,7 +21,7 @@ namespace FolderVisualizer.Classes
         }
         
 
-        public override void add(DocumentCompenent documentCompenent)
+        public override void add(DocumentComponent documentComponent)
         {
             throw new Exception();
         }
