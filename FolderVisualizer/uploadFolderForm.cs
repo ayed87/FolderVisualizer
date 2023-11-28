@@ -1,3 +1,4 @@
+using FolderVisualizer.Classes;
 using System.Windows.Forms;
 
 namespace FolderVisualizer
@@ -11,6 +12,7 @@ namespace FolderVisualizer
 
 
         }
+        private FolderLoader _folderLoader;
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,25 +50,16 @@ namespace FolderVisualizer
         private void button1_Click(object sender, EventArgs e)
         {
 
-            //    pictureBox1.Size = new Size(1000, 30000);
+            try
+            {
+                FolderDrawer folderDrawer = new FolderDrawer(pictureBox1);
+                folderDrawer.Draw();
 
+            }catch(Exception ex)
+            {
 
-
-            //    Graphics g = pictureBox1.CreateGraphics();
-            //    g.Clear(Color.Red);
-
-
-            //    Point linePoint1 = new Point(0, 3 * 30 + 25);
-            //    Pen GreenPen = new Pen(Color.LightGray);
-
-            //    Rectangle rect = new Rectangle(50, 50, 100, 1000000);
-            //    g.FillRectangle(Brushes.Blue, rect);
-
-            //    Point linePoint2 = new Point(1232, 4 * 30 + 25);
-            //    g.DrawLine(GreenPen, linePoint1, linePoint2);
-
-
-
+               
+            }
         }
 
         private void uploadPanel_Paint(object sender, PaintEventArgs e)
@@ -106,32 +99,32 @@ namespace FolderVisualizer
 
         private void uploadButton_Click_1(object sender, EventArgs e)
         {
+
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            string folderPath;
 
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 // Get the selected folder path
-                string folderPath = folderBrowserDialog.SelectedPath;
+                folderPath = folderBrowserDialog.SelectedPath;
 
-                FolderName.Text = folderPath;
+                _folderLoader = new FolderLoader(folderPath);
+                folderName.Text = (_folderLoader.getTopFolder().getName());
+                double sizeInBytes = _folderLoader.getTopFolder().calculateSize();
+                double sizeInKiloBytes = sizeInBytes / 1024;
+                double roundedSizeInKiloBytes = Math.Round(sizeInKiloBytes, 2); // Round to 2 decimal 
+                folderSize.Text = roundedSizeInKiloBytes + " KB";
 
-                //try
-                //{
-                //    // Get all files in the selected folder
-                //    string[] files = Directory.GetFiles(folderPath);
 
-                //    // Display the file names in a ListBox or any other control
 
-                //    foreach (string folder in files)
-                //    {
-                //        MessageBox.Show($"Folder Name: {Path.GetFileName(folder)}");
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show($"An error occurred while reading the folder: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
             }
+
+
+
+        }
+
+        private void viewStyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

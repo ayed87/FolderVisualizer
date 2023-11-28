@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             uploadPanel = new Panel();
-            button1 = new Button();
+            viewStyleComboBox = new ComboBox();
+            drawButton = new Button();
             folderSize = new Label();
-            FolderName = new Label();
+            folderName = new Label();
             uploadButton = new Button();
             visualizationPanel = new Panel();
             pictureBox1 = new PictureBox();
@@ -43,24 +44,37 @@
             // uploadPanel
             // 
             uploadPanel.BackColor = SystemColors.HighlightText;
-            uploadPanel.Controls.Add(button1);
+            uploadPanel.Controls.Add(viewStyleComboBox);
+            uploadPanel.Controls.Add(drawButton);
             uploadPanel.Controls.Add(folderSize);
-            uploadPanel.Controls.Add(FolderName);
+            uploadPanel.Controls.Add(folderName);
             uploadPanel.Controls.Add(uploadButton);
             uploadPanel.Location = new Point(12, 12);
             uploadPanel.Name = "uploadPanel";
             uploadPanel.Size = new Size(232, 656);
             uploadPanel.TabIndex = 0;
             // 
-            // button1
+            // viewStyleComboBox
             // 
-            button1.Location = new Point(42, 150);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            viewStyleComboBox.AutoCompleteCustomSource.AddRange(new string[] { "horizontal", "vertical" });
+            viewStyleComboBox.FormattingEnabled = true;
+            viewStyleComboBox.Items.AddRange(new object[] { "vertical", "horizontal" });
+            viewStyleComboBox.Location = new Point(17, 208);
+            viewStyleComboBox.Name = "viewStyleComboBox";
+            viewStyleComboBox.Size = new Size(151, 28);
+            viewStyleComboBox.TabIndex = 3;
+            viewStyleComboBox.Text = "View style";
+            viewStyleComboBox.SelectedIndexChanged += viewStyleComboBox_SelectedIndexChanged;
+            // 
+            // drawButton
+            // 
+            drawButton.Location = new Point(17, 146);
+            drawButton.Name = "drawButton";
+            drawButton.Size = new Size(140, 38);
+            drawButton.TabIndex = 2;
+            drawButton.Text = "View";
+            drawButton.UseVisualStyleBackColor = true;
+            drawButton.Click += button1_Click;
             // 
             // folderSize
             // 
@@ -72,15 +86,15 @@
             folderSize.Text = "folder size";
             folderSize.Click += label2_Click;
             // 
-            // FolderName
+            // folderName
             // 
-            FolderName.AutoSize = true;
-            FolderName.Location = new Point(17, 20);
-            FolderName.Name = "FolderName";
-            FolderName.Size = new Size(92, 20);
-            FolderName.TabIndex = 1;
-            FolderName.Text = "Folder name";
-            FolderName.Click += label1_Click_1;
+            folderName.AutoSize = true;
+            folderName.Location = new Point(17, 20);
+            folderName.Name = "folderName";
+            folderName.Size = new Size(92, 20);
+            folderName.TabIndex = 1;
+            folderName.Text = "Folder name";
+            folderName.Click += label1_Click_1;
             // 
             // uploadButton
             // 
@@ -88,7 +102,7 @@
             uploadButton.Name = "uploadButton";
             uploadButton.Size = new Size(140, 40);
             uploadButton.TabIndex = 0;
-            uploadButton.Text = "upload Folder";
+            uploadButton.Text = "Upload Folder";
             uploadButton.UseVisualStyleBackColor = true;
             uploadButton.Click += uploadButton_Click_1;
             // 
@@ -135,10 +149,11 @@
 
         private Panel uploadPanel;
         private Button uploadButton;
-        private Label FolderName;
+        private Label folderName;
         private Label folderSize;
         private Panel visualizationPanel;
-        private Button button1;
+        private Button drawButton;
         private PictureBox pictureBox1;
+        private ComboBox viewStyleComboBox;
     }
 }
