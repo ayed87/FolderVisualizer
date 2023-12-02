@@ -8,17 +8,17 @@ namespace FolderVisualizer.Classes
 {
     public class FolderLoader
     {
-        private DocumentComponent TopFolder;
+        private Folder TopFolder;
 
         public FolderLoader(String topPath) {
             TopFolder = TraverseDirectory(topPath);
         }
 
-        public DocumentComponent TraverseDirectory(string currentTopPath)
+        public Folder TraverseDirectory(string currentTopPath)
         {
 
             DirectoryInfo directoryInfo = new DirectoryInfo(currentTopPath);
-            DocumentComponent currentTopFolder = new Folder(directoryInfo.Name);
+            Folder currentTopFolder = new Folder(directoryInfo.Name);
 
             string[] files = Directory.GetFiles(currentTopPath);
             foreach (string file in files)
@@ -39,7 +39,7 @@ namespace FolderVisualizer.Classes
 
         }
 
-        public DocumentComponent getTopFolder() {
+        public Folder getTopFolder() {
         
             return TopFolder;
         }

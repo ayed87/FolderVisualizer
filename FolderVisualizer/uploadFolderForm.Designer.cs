@@ -51,7 +51,7 @@
             uploadPanel.Controls.Add(uploadButton);
             uploadPanel.Location = new Point(12, 12);
             uploadPanel.Name = "uploadPanel";
-            uploadPanel.Size = new Size(232, 656);
+            uploadPanel.Size = new Size(232, 863);
             uploadPanel.TabIndex = 0;
             // 
             // viewStyleComboBox

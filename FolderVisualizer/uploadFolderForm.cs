@@ -50,15 +50,19 @@ namespace FolderVisualizer
         private void button1_Click(object sender, EventArgs e)
         {
 
+
+
             try
             {
-                FolderDrawer folderDrawer = new FolderDrawer(pictureBox1);
+                FolderDrawer folderDrawer = new FolderDrawer(pictureBox1, _folderLoader.getTopFolder());
                 folderDrawer.Draw();
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
+                MessageBox.Show("a warning message.\nYou did not enter a folder path.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-               
+
             }
         }
 

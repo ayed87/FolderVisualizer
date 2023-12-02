@@ -35,5 +35,10 @@ namespace FolderVisualizer.Classes
         {
             return extension;
         }
+
+        public override string ToString()
+        {
+            return getName()+"."+extension;
+        }
     }
 }

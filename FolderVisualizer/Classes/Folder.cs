@@ -37,6 +37,11 @@ namespace FolderVisualizer.Classes
             return documentComponents;
         }
 
-   
+        public override string ToString()
+        {
+            return getName();
+        }
+
+
     }
 }
