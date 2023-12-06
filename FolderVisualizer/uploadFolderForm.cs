@@ -50,12 +50,12 @@ namespace FolderVisualizer
         private void button1_Click(object sender, EventArgs e)
         {
 
-
+            FolderDrawer folderDrawer = new FolderDrawer(pictureBox1, _folderLoader.getTopFolder());
+            folderDrawer.Draw();
 
             try
             {
-                FolderDrawer folderDrawer = new FolderDrawer(pictureBox1, _folderLoader.getTopFolder());
-                folderDrawer.Draw();
+
 
             }
             catch (Exception ex)
@@ -128,6 +128,11 @@ namespace FolderVisualizer
         }
 
         private void viewStyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

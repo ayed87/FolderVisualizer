@@ -109,28 +109,30 @@
             // visualizationPanel
             // 
             visualizationPanel.AutoScroll = true;
+            visualizationPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             visualizationPanel.Controls.Add(pictureBox1);
             visualizationPanel.Dock = DockStyle.Right;
-            visualizationPanel.Location = new Point(292, 0);
+            visualizationPanel.Location = new Point(301, 0);
             visualizationPanel.Name = "visualizationPanel";
-            visualizationPanel.Size = new Size(1138, 704);
+            visualizationPanel.Size = new Size(1129, 762);
             visualizationPanel.TabIndex = 1;
             visualizationPanel.Scroll += visualizationPanel_Scroll;
             visualizationPanel.Paint += visualizationPanel_Paint;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(29, 18);
+            pictureBox1.Location = new Point(17, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1097, 674);
+            pictureBox1.Size = new Size(1100, 703);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // uploadFolderForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1430, 704);
+            ClientSize = new Size(1430, 762);
             Controls.Add(visualizationPanel);
             Controls.Add(uploadPanel);
             Name = "uploadFolderForm";

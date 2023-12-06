@@ -39,6 +39,8 @@ namespace FolderVisualizer.Classes
 
         }
 
+
+
         public Folder getTopFolder() {
         
             return TopFolder;

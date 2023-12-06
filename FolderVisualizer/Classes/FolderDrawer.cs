@@ -12,7 +12,7 @@ namespace FolderVisualizer.Classes
 {
     public class FolderDrawer
     {
-        private PictureBox panel;
+        private PictureBox picturBox;
         private Folder topFolder;
 
         
@@ -24,43 +24,39 @@ namespace FolderVisualizer.Classes
 
 
 
+
+
         //DocumentComponent topFolder;
-        public FolderDrawer(PictureBox panel,Folder folder ) { 
-            this.panel = panel;
+        public FolderDrawer(PictureBox picturBox, Folder folder ) { 
+            this.picturBox = picturBox;
             this.topFolder = folder;
 
         }
 
+
+
+
         public void Draw()
         {
 
-            Bitmap bitmap = new Bitmap(panel.Width, panel.Height);
-            using (Graphics g = Graphics.FromImage(bitmap))
-            {
-                // Clear the drawing area
-                g.Clear(Color.White);
+            // Create a new Bitmap for drawing
 
-                int currentX = 0, currentY = 0;
-
-                // Visualize the folder structure
-                visualize(g, currentX, currentY, topFolder);
-
-                // Calculate the size of the drawn content
-                RectangleF bounds = g.VisibleClipBounds;
-
-                // Set the size of the PictureBox
-                panel.Image = bitmap;
-                panel.Size = new Size((int)bounds.Right + 1000, (int)bounds.Bottom + 10000);
-
-                // Enable auto-scrolling
-                panel.SizeMode = PictureBoxSizeMode.AutoSize;
-
-            }
+            picturBox.Size = Sizer.getHorizontalSize(topFolder);
 
 
+
+            Bitmap bitmap = new Bitmap(picturBox.Width, picturBox.Height);
+            Graphics g = Graphics.FromImage(bitmap);
+            g.Clear(Color.Transparent);
+            int currentX = 0, currentY = 0;
+            visualizeHorizontal(g, currentX, currentY, topFolder);
+
+            picturBox.Image = bitmap;
 
 
         }
+
+
 
         public void drawRectangle(int x,int y,String text, Graphics g,Brush brush)
         {
@@ -75,7 +71,7 @@ namespace FolderVisualizer.Classes
 
         }
 
-        public int visualize(Graphics graphics, int currentX, int currentY, Folder currentFolder)
+        public int visualizeVertical(Graphics graphics, int currentX, int currentY, Folder currentFolder)
         {
 
             drawRectangle(currentX, currentY, currentFolder.getName(), graphics, folderColour);
@@ -101,7 +97,7 @@ namespace FolderVisualizer.Classes
                     int yforVerticalEnd = currentY + 80;
                     graphics.DrawLine(Pens.Black, xForVertical, yForVerticalStart, xForVertical, yforVerticalEnd);
                     currentY = yforVerticalEnd;
-                    int spaceedCurrentX = currentX + 20;
+                    int spaceedCurrentX = currentX + 120;
                     graphics.DrawLine(Pens.Black, xForVertical, currentY, spaceedCurrentX, currentY);
                     drawRectangle(spaceedCurrentX, currentY, documentComponent.getName(), graphics, fileColour);
 
@@ -115,10 +111,10 @@ namespace FolderVisualizer.Classes
                     int yforVerticalEnd = currentY + 80;
                     graphics.DrawLine(Pens.Black, xForVertical, yForVerticalStart, xForVertical, yforVerticalEnd);
                     currentY = yforVerticalEnd;
-                    int spaceedCurrentX = currentX + 20;
+                    int spaceedCurrentX = currentX + 120;
                     graphics.DrawLine(Pens.Black, xForVertical, currentY, spaceedCurrentX, currentY);
                     Folder newCurrentFolder = (Folder)documentComponent;
-                    int locurrentY = visualize(graphics,spaceedCurrentX,currentY,newCurrentFolder);
+                    int locurrentY = visualizeVertical(graphics,spaceedCurrentX,currentY,newCurrentFolder);
                     if(currentFolder.getDocuments().Count-counter > 0)
                     {
                         graphics.DrawLine(Pens.Black, xForVertical, yForVerticalStart, xForVertical, locurrentY);
@@ -129,7 +125,7 @@ namespace FolderVisualizer.Classes
 
                 }
             }
-            return currentY-40;
+            return currentY;
 
         }
 
