@@ -1,24 +1,83 @@
 using FolderVisualizer.Classes;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FolderVisualizer
 {
     public partial class uploadFolderForm : Form
     {
+        private int zoomFactor = 120;
+        float constant = 1.7f;
+        private FolderLoader _folderLoader;
+
+
         public uploadFolderForm()
         {
             InitializeComponent();
 
+            this.KeyPreview = true;
+
+
+            this.KeyDown += Form1_KeyPress;
+
+
+            visualizationPanel.Controls.Add(pictureBox1);
+
+
+            pictureBox1.MouseWheel += pictureBox1_MouseWheel;
+
+
+
+
 
 
         }
-        private FolderLoader _folderLoader;
+        private void Form1_KeyPress(object sender, KeyEventArgs e)
+        {
+
+            // Handle key events here
+
+            if (e.KeyCode == Keys.Oemplus)
+            {
+
+                pictureBox1.Height += Convert.ToInt32(zoomFactor / constant);
+                pictureBox1.Width += zoomFactor;
+
+            }
+            else if (e.KeyCode == Keys.OemMinus)
+            {
+
+                pictureBox1.Height -= Convert.ToInt32(zoomFactor / constant);
+                pictureBox1.Width -= zoomFactor;
+            }
+
+        }
+
+        private void pictureBox1_MouseWheel (object sender, MouseEventArgs e)
+        {
+            if(Control.ModifierKeys == Keys.Control)
+            {
+
+                if (e.Delta > 0)
+                {
+                    pictureBox1.Height += Convert.ToInt32(zoomFactor / constant);
+                    pictureBox1.Width += zoomFactor;
+                }
+                else
+                {
+                    pictureBox1.Height -= Convert.ToInt32(zoomFactor / constant);
+                    pictureBox1.Width -= zoomFactor;
+                }
+            }
+
+        }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
+
 
         private void uploadFolderForm_Load(object sender, EventArgs e)
         {
@@ -50,11 +109,28 @@ namespace FolderVisualizer
         private void button1_Click(object sender, EventArgs e)
         {
 
-            FolderDrawer folderDrawer = new FolderDrawer(pictureBox1, _folderLoader.getTopFolder());
-            folderDrawer.Draw();
 
             try
             {
+
+                FolderDrawer folderDrawer;
+                String userSelection = viewStyleComboBox.SelectedItem.ToString();
+
+
+                if (userSelection.Equals("horizontal"))
+                {
+
+                    folderDrawer = new FolderDrawer(pictureBox1, _folderLoader.getTopFolder(), UserChoise.horizontal);
+                    folderDrawer.Draw();
+
+                }
+                else
+                {
+                    folderDrawer = new FolderDrawer(pictureBox1, _folderLoader.getTopFolder(), UserChoise.vertical);
+                    folderDrawer.Draw();
+
+
+                }
 
 
             }
@@ -98,7 +174,7 @@ namespace FolderVisualizer
 
         private void visualizationPanel_Scroll(object sender, ScrollEventArgs e)
         {
-            pictureBox1.Invalidate();
+            //pictureBox1.Invalidate();
         }
 
         private void uploadButton_Click_1(object sender, EventArgs e)
@@ -135,6 +211,19 @@ namespace FolderVisualizer
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void zoomInButton_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Height += Convert.ToInt32(zoomFactor / constant);
+            pictureBox1.Width += zoomFactor;
+
+        }
+
+        private void zoomOutButton_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Height -= Convert.ToInt32(zoomFactor / constant);
+            pictureBox1.Width -= zoomFactor;
         }
     }
 }

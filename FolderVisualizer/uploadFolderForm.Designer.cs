@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             uploadPanel = new Panel();
+            zoomOutButton = new Button();
+            zoomInButton = new Button();
             viewStyleComboBox = new ComboBox();
             drawButton = new Button();
             folderSize = new Label();
@@ -44,6 +46,8 @@
             // uploadPanel
             // 
             uploadPanel.BackColor = SystemColors.HighlightText;
+            uploadPanel.Controls.Add(zoomOutButton);
+            uploadPanel.Controls.Add(zoomInButton);
             uploadPanel.Controls.Add(viewStyleComboBox);
             uploadPanel.Controls.Add(drawButton);
             uploadPanel.Controls.Add(folderSize);
@@ -53,6 +57,26 @@
             uploadPanel.Name = "uploadPanel";
             uploadPanel.Size = new Size(232, 863);
             uploadPanel.TabIndex = 0;
+            // 
+            // zoomOutButton
+            // 
+            zoomOutButton.Location = new Point(124, 356);
+            zoomOutButton.Name = "zoomOutButton";
+            zoomOutButton.Size = new Size(80, 29);
+            zoomOutButton.TabIndex = 4;
+            zoomOutButton.Text = "-";
+            zoomOutButton.UseVisualStyleBackColor = true;
+            zoomOutButton.Click += zoomOutButton_Click;
+            // 
+            // zoomInButton
+            // 
+            zoomInButton.Location = new Point(17, 356);
+            zoomInButton.Name = "zoomInButton";
+            zoomInButton.Size = new Size(78, 29);
+            zoomInButton.TabIndex = 1;
+            zoomInButton.Text = "+";
+            zoomInButton.UseVisualStyleBackColor = true;
+            zoomInButton.Click += zoomInButton_Click;
             // 
             // viewStyleComboBox
             // 
@@ -112,9 +136,9 @@
             visualizationPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             visualizationPanel.Controls.Add(pictureBox1);
             visualizationPanel.Dock = DockStyle.Right;
-            visualizationPanel.Location = new Point(301, 0);
+            visualizationPanel.Location = new Point(310, 0);
             visualizationPanel.Name = "visualizationPanel";
-            visualizationPanel.Size = new Size(1129, 762);
+            visualizationPanel.Size = new Size(1120, 762);
             visualizationPanel.TabIndex = 1;
             visualizationPanel.Scroll += visualizationPanel_Scroll;
             visualizationPanel.Paint += visualizationPanel_Paint;
@@ -124,6 +148,7 @@
             pictureBox1.Location = new Point(17, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(1100, 703);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
@@ -157,5 +182,7 @@
         private Button drawButton;
         private PictureBox pictureBox1;
         private ComboBox viewStyleComboBox;
+        private Button zoomInButton;
+        private Button zoomOutButton;
     }
 }

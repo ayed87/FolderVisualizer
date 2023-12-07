@@ -8,14 +8,12 @@ namespace FolderVisualizer.Classes
 {
     public class Sizer
     {
-        static Size currentSize = new Size(0,0);
+        private static Size currentSize = new Size(0,0);
         private static int width = 120, height = 40;
 
 
-
-        public static void calculateVerticalSize(Folder currentTopFolder)
+        private static void calculateVerticalSize(Folder currentTopFolder)
         {
-
 
             currentSize.Width += width;
             currentSize.Height += height;
@@ -59,19 +57,21 @@ namespace FolderVisualizer.Classes
             currentSize = new Size(0, 0);
         }
 
-        public static Size GetVerticalSize(Folder topfolder)
+        public Size GetVerticalSize(Folder topfolder)
         {
             resetSize();
             calculateVerticalSize(topfolder);
-            int additionSpaceX = 240;
+            int additionSpaceX = 350;
             int additionSpaceY = 160;
+            // adding aditional space to make it more readable
             return new Size(currentSize.Width+additionSpaceX,currentSize.Height+additionSpaceY);
         }
 
-        public static Size getHorizontalSize(Folder topfolder)
+        public Size getHorizontalSize(Folder topfolder)
         {
             resetSize();
             calculateHorizontalSize(topfolder);
+            // adding aditional space to make it more readable
             int additionSpaceX = 240;
             int additionSpaceY = 440;
             return new Size(currentSize.Width + additionSpaceX, currentSize.Height + additionSpaceY);
@@ -79,7 +79,7 @@ namespace FolderVisualizer.Classes
         }
 
 
-        public static void calculateHorizontalSize(Folder currentFolder)
+        private void calculateHorizontalSize(Folder currentFolder)
         {
 
             currentSize.Width +=  width;
