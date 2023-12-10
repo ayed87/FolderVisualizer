@@ -19,7 +19,7 @@ namespace FolderVisualizer.Classes
 
             DirectoryInfo directoryInfo = new DirectoryInfo(currentTopPath);
             Folder currentTopFolder = new Folder(directoryInfo.Name);
-
+            // normal case
             string[] files = Directory.GetFiles(currentTopPath);
             foreach (string file in files)
             {
@@ -27,7 +27,7 @@ namespace FolderVisualizer.Classes
                 DocumentComponent theFile = new File(fileInfo.Name, fileInfo.Length, fileInfo.Extension);
                 currentTopFolder.add(theFile);
             }
-
+            // recursive case
             string[] subdirectories = Directory.GetDirectories(currentTopPath);
             foreach (string subdirectory in subdirectories)
             {

@@ -78,23 +78,28 @@ namespace FolderVisualizer.Classes
         // shared component rectangle
 
 
-        private void drawRectangle(int x,int y,String text, Graphics g,Brush brush)
+        private void drawRectangle(int x,int y,String text,double size, Graphics g,Brush brush)
         {
             Pen linePen = new Pen(Color.Black, 2);
             g.FillRectangle(brush, x, y, width, height);
             Rectangle rect = new Rectangle(x, y, width, height);
-            PointF textPosition = new PointF(rect.Left + rect.Width / 2, rect.Top + rect.Height / 2);
+            PointF textPosition = new PointF(rect.Left + rect.Width / 2, rect.Top + rect.Height / 2-5);
             StringFormat stringFormat = new StringFormat();
             stringFormat.Alignment = StringAlignment.Center;
             stringFormat.LineAlignment = StringAlignment.Center;
             g.DrawString(text, font, Brushes.Black, textPosition,stringFormat);
+
+            int addspace = 12;
+            textPosition = new PointF(rect.Left + rect.Width / 2, rect.Top + rect.Height / 2+addspace);
+
+            g.DrawString(size/1024+" KB", font, Brushes.Black, textPosition,stringFormat);
 
         }
 
         private int visualizeVertical(Graphics graphics, int currentX, int currentY, Folder currentFolder)
         {
 
-            drawRectangle(currentX, currentY, currentFolder.getName(), graphics, folderColour);
+            drawRectangle(currentX, currentY, currentFolder.getName(),currentFolder.calculateSize(), graphics, folderColour);
 
             currentX = currentX + width;
             currentY = currentY + height;
@@ -125,7 +130,7 @@ namespace FolderVisualizer.Classes
 
 
                     // drawing rectangle for file
-                    drawRectangle(spaceedCurrentX, currentY, documentComponent.getName(), graphics, fileColour);
+                    drawRectangle(spaceedCurrentX, currentY, documentComponent.getName(), documentComponent.calculateSize(), graphics, fileColour);
 
 
                 }
@@ -153,7 +158,7 @@ namespace FolderVisualizer.Classes
 
         private int visualizeHorizontal(Graphics graphics, int currentX, int currentY, Folder currentFolder)
         {
-            drawRectangle(currentX, currentY, currentFolder.getName(), graphics, folderColour);
+            drawRectangle(currentX, currentY, currentFolder.getName(),currentFolder.calculateSize(), graphics, folderColour);
 
             currentX = currentX + width;
             currentY = currentY + height / 2;
@@ -179,7 +184,7 @@ namespace FolderVisualizer.Classes
                 if (documentComponent is File)
                 {
 
-                    drawRectangle(currentX, spaceedCurrentY, documentComponent.getName(), graphics, fileColour);
+                    drawRectangle(currentX, spaceedCurrentY, documentComponent.getName(),documentComponent.calculateSize(), graphics, fileColour);
                 }
                 else
                 {
