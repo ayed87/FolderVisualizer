@@ -83,12 +83,14 @@ namespace FolderVisualizer.Classes
             Pen linePen = new Pen(Color.Black, 2);
             g.FillRectangle(brush, x, y, width, height);
             Rectangle rect = new Rectangle(x, y, width, height);
-            PointF textPosition = new PointF(rect.Left + rect.Width / 2, rect.Top + rect.Height / 2-5);
+            // this space for make a space betwen file name and its size 
+            int anotherSpace = 5;
+            PointF textPosition = new PointF(rect.Left + rect.Width / 2, rect.Top + rect.Height / 2-anotherSpace);
             StringFormat stringFormat = new StringFormat();
             stringFormat.Alignment = StringAlignment.Center;
             stringFormat.LineAlignment = StringAlignment.Center;
             g.DrawString(text, font, Brushes.Black, textPosition,stringFormat);
-
+            // this is for size
             int addspace = 12;
             textPosition = new PointF(rect.Left + rect.Width / 2, rect.Top + rect.Height / 2+addspace);
 
