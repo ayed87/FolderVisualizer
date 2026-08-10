@@ -7,7 +7,6 @@ The application recursively traverses the selected directory, builds an in-memor
 ## Architecture
 
 ![Folder Visualizer Architecture](./image.png)
-
 The project is divided into several main components:
 
 - **DocumentComponent**  
